@@ -6,8 +6,8 @@ import AuthService from "../../Services/AuthService";
 import { User } from "../../models/user";
 
 const validation = Yup.object().shape({
-  email: Yup.string().required("Username is required"),
-  password: Yup.string().required("Password is required"),
+  email: Yup.string().required("O campo usuário é obrigatório").max(40, 'Informe no máximo 40 caracteres').email('Informe formato usuário valido').trim(),
+  password: Yup.string().max(39, 'Informe no máximo 40 caracteres').required("O campo senha é obrigatório").min(4, 'Informe no mínimo 4 caracteres').trim(),
 });
 
 const Login = () => {
@@ -21,6 +21,7 @@ const Login = () => {
     const email = form.email;
     const password = form.password;
 
+    console.log(form)
     AuthService.login(email, password)
       .then((response) => {
         console.log(response)
