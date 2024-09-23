@@ -1,9 +1,10 @@
 import './App.css'
-import TodoProvider from './context/todoContext'
-import AddTodo from './components/AddTodo'
-import Todos from './containers/Todos'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
-import Navbar from './navbar/Navbar'
+import Navbar from './components/Navbar/Navbar'
+import Login from './components/Login/Login'
+import Home from './components/Home/Home'
+import Servicos from './components/Servicos/Servicos'
+import Contato from './components/Contato/Contato'
 
 const AppLayout = () => (
   <>
@@ -19,11 +20,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Todos />,
+        element: <Home />,
       },
       {
         path: "login",
-        element: <AddTodo />,
+        element: <Login />,
+      },
+      {
+        path: "servicos",
+        element: <Servicos />
+      },
+      {
+        path: "contato",
+        element: <Contato />
       }
     ]
   }
@@ -33,11 +42,9 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <TodoProvider>
-      <main className='App'>
-        <RouterProvider router={router} />
-      </main>
-    </TodoProvider>
+    <main className='App'>
+      <RouterProvider router={router} />
+    </main>
   )
 }
 
